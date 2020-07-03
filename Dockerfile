@@ -85,7 +85,7 @@ RUN git clone --depth 1 https://github.com/pwndbg/pwndbg && \
     echo "source $PWD/pwndbg/gdbinit.py" > ~/.gdbinit_pwndbg
 
 RUN git clone https://github.com/hugsy/gef.git && \
-    cd gef && echo source $PWD/gef.py > ~/.gdbinit
+    cd gef && echo source $PWD/gef.py > ~/.gdbinit_gef
 
 RUN git clone --depth 1 https://github.com/niklasb/libc-database.git libc-database && \
     cd libc-database && ./get || echo "/libc-database/" > ~/.libcdb_path
@@ -93,20 +93,20 @@ RUN git clone --depth 1 https://github.com/niklasb/libc-database.git libc-databa
 WORKDIR /ctf/work/
 
 #Disable these until I have my own glibc builder
-#COPY --from=skysider/glibc_builder64:2.19 /glibc/2.19/64 /glibc/2.19/64
-#COPY --from=skysider/glibc_builder32:2.19 /glibc/2.19/32 /glibc/2.19/32
-#
-#COPY --from=skysider/glibc_builder64:2.23 /glibc/2.23/64 /glibc/2.23/64
-#COPY --from=skysider/glibc_builder32:2.23 /glibc/2.23/32 /glibc/2.23/32
-#
-#COPY --from=skysider/glibc_builder64:2.24 /glibc/2.24/64 /glibc/2.24/64
-#COPY --from=skysider/glibc_builder32:2.24 /glibc/2.24/32 /glibc/2.24/32
-#
-#COPY --from=skysider/glibc_builder64:2.28 /glibc/2.28/64 /glibc/2.28/64
-#COPY --from=skysider/glibc_builder32:2.28 /glibc/2.28/32 /glibc/2.28/32
-#
-#COPY --from=skysider/glibc_builder64:2.29 /glibc/2.29/64 /glibc/2.29/64
-#COPY --from=skysider/glibc_builder32:2.29 /glibc/2.29/32 /glibc/2.29/32
+COPY --from=skysider/glibc_builder64:2.19 /glibc/2.19/64 /glibc/2.19/64
+COPY --from=skysider/glibc_builder32:2.19 /glibc/2.19/32 /glibc/2.19/32
+
+COPY --from=skysider/glibc_builder64:2.23 /glibc/2.23/64 /glibc/2.23/64
+COPY --from=skysider/glibc_builder32:2.23 /glibc/2.23/32 /glibc/2.23/32
+
+COPY --from=skysider/glibc_builder64:2.24 /glibc/2.24/64 /glibc/2.24/64
+COPY --from=skysider/glibc_builder32:2.24 /glibc/2.24/32 /glibc/2.24/32
+
+COPY --from=skysider/glibc_builder64:2.28 /glibc/2.28/64 /glibc/2.28/64
+COPY --from=skysider/glibc_builder32:2.28 /glibc/2.28/32 /glibc/2.28/32
+
+COPY --from=skysider/glibc_builder64:2.29 /glibc/2.29/64 /glibc/2.29/64
+COPY --from=skysider/glibc_builder32:2.29 /glibc/2.29/32 /glibc/2.29/32
 
 COPY zshrc /root/.zshrc
 COPY tmux.conf /root/.tmux.conf
