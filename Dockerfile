@@ -51,19 +51,6 @@ RUN dpkg --add-architecture i386 && \
     libseccomp2 \
     seccomp 
 
-
-RUN apt-get -f install -y \
-    gcc-5-arm-linux-gnueabi \
-    gcc-5-aarch64-linux-gnu \
-    gcc-5-powerpc64le-linux-gnu \
-    gcc-5-powerpc64-linux-gnu \
-    gcc-5-powerpc-linux-gnu \
-    gcc-5-mips64el-linux-gnuabi64 \
-    gcc-5-mips64-linux-gnuabi64 \
-    gcc-5-mipsel-linux-gnu  \
-    gcc-5-mips-linux-gnu &&\
-    rm -rf /var/lib/apt/list/**
-
 RUN python3 -m pip install --no-cache-dir \
     ropgadget \
     pwntools \
