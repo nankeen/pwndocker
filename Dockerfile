@@ -43,7 +43,8 @@ RUN dpkg --add-architecture i386 && \
     gawk \
     file \
     zsh \
-    qemu \
+    qemu-system \
+    qemu-user \
     bison --fix-missing  \
     gcc-multilib \
     binwalk \
@@ -100,9 +101,6 @@ COPY --from=skysider/glibc_builder32:2.29 /glibc/2.29/32 /glibc/2.29/32
 
 COPY --from=skysider/glibc_builder64:2.30 /glibc/2.30/64 /glibc/2.30/64
 COPY --from=skysider/glibc_builder32:2.30 /glibc/2.30/32 /glibc/2.30/32
-
-COPY --from=skysider/glibc_builder64:2.31 /glibc/2.31/64 /glibc/2.31/64
-COPY --from=skysider/glibc_builder32:2.31 /glibc/2.31/32 /glibc/2.31/32
 
 COPY zshrc /root/.zshrc
 COPY tmux.conf /root/.tmux.conf
