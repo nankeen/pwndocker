@@ -1,7 +1,7 @@
 Pwndocker
 =========
 
-A Docker environment for CTF pwning based on a modified Ubuntu 18.04 `phusion/baseimage:master-amd64`.
+A Docker environment for CTF pwning based on a modified Ubuntu 20.04 `phusion/baseimage:master-amd64`.
 
 Forked from [skysider/pwndocker](https://github.com/skysider/pwndocker).
 
