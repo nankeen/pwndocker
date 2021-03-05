@@ -3,7 +3,7 @@ MAINTAINER nankeen <nankeen@nankeen.me>
 
 RUN dpkg --add-architecture i386 && \
     apt-get -y update && \
-    apt install -y \
+    apt-get install -y \
     libc6:i386 \
     libc6-dbg:i386 \
     build-essential \
@@ -50,7 +50,8 @@ RUN dpkg --add-architecture i386 && \
     binwalk \
     libseccomp-dev \
     libseccomp2 \
-    seccomp 
+    seccomp \
+    musl-tools
 
 RUN python3 -m pip install --no-cache-dir \
     ropgadget \
