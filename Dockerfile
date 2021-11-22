@@ -51,7 +51,8 @@ RUN dpkg --add-architecture i386 && \
     libseccomp-dev \
     libseccomp2 \
     seccomp \
-    musl-tools
+    musl-tools && \
+    rm -rf /var/lib/apt/lists/*
 
 RUN python3 -m pip install --no-cache-dir \
     ropgadget \
@@ -67,7 +68,7 @@ RUN gem install one_gadget seccomp-tools && rm -rf /var/lib/gems/2.*/cache/*
 
 # Oh-my-zsh
 RUN chsh -s /bin/zsh
-RUN sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+RUN sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
 RUN git clone --depth 1 https://github.com/pwndbg/pwndbg && \
     cd pwndbg && chmod +x setup.sh && ./setup.sh && \
