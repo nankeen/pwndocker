@@ -42,7 +42,6 @@ RUN dpkg --add-architecture i386 && \
     patchelf \
     gawk \
     file \
-    zsh \
     qemu-system \
     qemu-user \
     bison --fix-missing  \
@@ -51,7 +50,8 @@ RUN dpkg --add-architecture i386 && \
     libseccomp-dev \
     libseccomp2 \
     seccomp \
-    musl-tools && \
+    musl-tools \
+    stow && \
     rm -rf /var/lib/apt/lists/*
 
 RUN python3 -m pip install --no-cache-dir \
@@ -65,10 +65,6 @@ RUN python3 -m pip install --no-cache-dir \
     angr
 
 RUN gem install one_gadget seccomp-tools && rm -rf /var/lib/gems/2.*/cache/*
-
-# Oh-my-zsh
-RUN chsh -s /bin/zsh
-RUN sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
 RUN git clone --depth 1 https://github.com/pwndbg/pwndbg && \
     cd pwndbg && chmod +x setup.sh && ./setup.sh && \
@@ -104,7 +100,7 @@ COPY --from=skysider/glibc_builder32:2.29 /glibc/2.29/32 /glibc/2.29/32
 COPY --from=skysider/glibc_builder64:2.30 /glibc/2.30/64 /glibc/2.30/64
 COPY --from=skysider/glibc_builder32:2.30 /glibc/2.30/32 /glibc/2.30/32
 
-COPY zshrc /root/.zshrc
-COPY tmux.conf /root/.tmux.conf
+RUN git clone --depth 1 https://github.com/nankeen/rcfiles.git /root/.rcfiles && \
+    cd /root/.rcfiles && stow .
 
-CMD ["/bin/zsh"]
+CMD ["/bin/bash"]
